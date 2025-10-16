@@ -97,6 +97,27 @@ GitHub Actionsが自動的にビルドとデプロイを実行します:
 
 **重要**: `vite.config.js`の`base`オプションがリポジトリ名と一致していることを確認してください。
 
+## Git・GitHub運用ルール
+
+### コミットメッセージ
+
+- **日本語で記述**すること
+- 例: `feat: PRプレビュー環境を追加`、`fix: ゲームリセット時の状態初期化を修正`
+
+### プルリクエスト
+
+- **タイトル・本文ともに日本語で記述**すること
+- 変更内容を簡潔に説明
+- 必要に応じてスクリーンショットを添付
+
+### PRプレビュー環境
+
+PRを作成すると、自動的にプレビュー環境がデプロイされます:
+
+- **プレビューURL**: `https://kt-seed.github.io/codex-test_tic-tac-toe/pr-preview/pr-{番号}/`
+- PRコメントに自動的にプレビューURLが投稿されます
+- PRをクローズ（マージまたは却下）すると、プレビュー環境は自動的に削除されます
+
 ## GitHub Pages設定
 
 リポジトリの設定で以下を確認してください:
@@ -105,4 +126,4 @@ GitHub Actionsが自動的にビルドとデプロイを実行します:
 2. Source: GitHub Actions
 3. デプロイ後のURL:
    - 本番: `https://kt-seed.github.io/codex-test_tic-tac-toe/`
-- PRプレビュー: `https://kt-seed.github.io/codex-test_tic-tac-toe/pr-preview/pr-{番号}/`
+   - PRプレビュー: `https://kt-seed.github.io/codex-test_tic-tac-toe/pr-preview/pr-{番号}/`
