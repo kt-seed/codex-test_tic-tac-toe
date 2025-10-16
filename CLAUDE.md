@@ -90,7 +90,7 @@ src/
 
 GitHub Actionsが自動的にビルドとデプロイを実行します:
 
-1. `master`ブランチへのプッシュをトリガー
+1. `main`ブランチへのプッシュをトリガー
 2. pnpmで依存関係をインストール
 3. Viteでビルド (`pnpm build`)
 4. GitHub Pagesにデプロイ

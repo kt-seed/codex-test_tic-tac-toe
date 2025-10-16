@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - master # masterブランチへのプッシュ時にデプロイ
+      - main # mainブランチへのプッシュ時にデプロイ
 
 # GitHub Pagesへのデプロイ権限を設定
 permissions:
