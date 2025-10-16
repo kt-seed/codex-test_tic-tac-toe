@@ -103,4 +103,6 @@ GitHub Actionsが自動的にビルドとデプロイを実行します:
 
 1. Settings > Pages
 2. Source: GitHub Actions
-3. デプロイ後のURL: `https://<username>.github.io/Codex_tictactoe/`
+3. デプロイ後のURL:
+   - 本番: `https://kt-seed.github.io/codex-test_tic-tac-toe/`
+- PRプレビュー: `https://kt-seed.github.io/codex-test_tic-tac-toe/pr-preview/pr-{番号}/`

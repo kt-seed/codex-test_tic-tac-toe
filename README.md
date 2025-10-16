@@ -12,7 +12,7 @@ Vue 3とTailwind CSSで作られた、ブラウザで遊べる三目並べゲー
 
 ## 🚀 デモ
 
-[こちらからプレイできます](https://your-username.github.io/Codex_tictactoe/)
+[こちらからプレイできます](https://kt-seed.github.io/codex-test_tic-tac-toe/)
 
 ## 🛠️ 技術スタック
 
@@ -35,8 +35,8 @@ Vue 3とTailwind CSSで作られた、ブラウザで遊べる三目並べゲー
 
 ```bash
 # リポジトリをクローン
-git clone https://github.com/your-username/Codex_tictactoe.git
-cd Codex_tictactoe
+git clone https://github.com/kt-seed/codex-test_tic-tac-toe.git
+cd codex-test_tic-tac-toe
 
 # 依存関係をインストール
 pnpm install
@@ -65,7 +65,7 @@ pnpm preview
 
 このプロジェクトはGitHub Actionsを使用してGitHub Pagesに自動デプロイされます。
 
-`master`ブランチにプッシュすると、自動的にビルドとデプロイが実行されます。
+`main`ブランチにプッシュすると、自動的にビルドとデプロイが実行されます。
 
 ## 📁 プロジェクト構造
 
