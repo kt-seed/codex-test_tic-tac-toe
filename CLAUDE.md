@@ -4,7 +4,7 @@
 
 ## プロジェクト概要
 
-このプロジェクトは三目並べ(Tic-Tac-Toe)で遊べるWebサイトです。
+このプロジェクトは三目並べ(Tic-Tac-Toe)で遊べるWebサイトです。Vue 3とTailwind CSSを使用して構築されており、GitHub Pagesにデプロイされます。
 
 ## 言語設定
 
@@ -13,16 +13,94 @@
 
 ## 開発コマンド
 
-※プロジェクトのセットアップ後、以下のコマンドを追加してください:
-- ビルドコマンド
-- テストコマンド
-- 開発サーバー起動コマンド
-- Lintコマンド
+```bash
+# 依存関係のインストール
+pnpm install
+
+# 開発サーバーの起動
+pnpm dev
+
+# 本番用ビルド
+pnpm build
+
+# プレビュー（ビルド後の確認）
+pnpm preview
+```
+
+## 技術スタック
+
+- **フレームワーク**: Vue 3 (Composition API)
+- **パッケージ管理**: pnpm
+- **ビルドツール**: Vite
+- **スタイリング**: Tailwind CSS
+- **状態管理**: Pinia
+- **アニメーション**:
+  - @formkit/auto-animate (リストアニメーション)
+  - tailwindcss-motion (モーションプリセット)
+- **デプロイ**: GitHub Pages (GitHub Actions)
+
+## ディレクトリ構造
+
+```
+src/
+├── components/          # Vueコンポーネント
+│   ├── Board.vue       # ゲームボード (3x3グリッド)
+│   ├── Cell.vue        # 各マス目
+│   ├── GameStatus.vue  # ゲーム状態表示（ターン、勝敗）
+│   └── GameHistory.vue # 履歴・統計表示
+├── composables/        # Composition API
+│   └── useGame.js      # ゲームロジック（勝敗判定等）
+├── stores/             # Pinia ストア
+│   └── gameHistory.js  # 履歴管理（LocalStorage）
+├── App.vue             # メインアプリケーション
+├── main.js             # エントリーポイント
+└── style.css           # Tailwindディレクティブ
+```
 
 ## アーキテクチャ
 
-※実装後、以下の情報を追加してください:
-- 使用する技術スタック(フレームワーク、ライブラリ)
-- ディレクトリ構造の説明
-- 主要なコンポーネント/モジュールの役割
-- ゲームロジックの実装方針
+### ゲームロジック (`useGame.js`)
+
+- 3x3のボード状態管理
+- プレイヤー交代（X/O）
+- 勝敗判定（8パターン: 横3, 縦3, 斜め2）
+- 引き分け判定
+- ゲームリセット機能
+
+### 履歴管理 (`gameHistory.js`)
+
+- LocalStorageで永続化（最新20件）
+- ゲーム結果の自動保存
+- 統計情報の算出（勝率、引き分け率）
+
+### コンポーネント設計
+
+- **Board**: セルの配置とクリックイベント管理
+- **Cell**: 個別マス目の表示とアニメーション
+- **GameStatus**: 現在の状態表示とリセットボタン
+- **GameHistory**: 履歴リストと統計カード
+
+### アニメーション
+
+- `tailwindcss-motion`: プリセットアニメーション（`motion-preset-*`）
+- `@formkit/auto-animate`: 履歴リストの自動アニメーション
+- 勝利時は勝利ラインのセルが緑色にハイライト
+
+## デプロイ
+
+GitHub Actionsが自動的にビルドとデプロイを実行します:
+
+1. `master`ブランチへのプッシュをトリガー
+2. pnpmで依存関係をインストール
+3. Viteでビルド (`pnpm build`)
+4. GitHub Pagesにデプロイ
+
+**重要**: `vite.config.js`の`base`オプションがリポジトリ名と一致していることを確認してください。
+
+## GitHub Pages設定
+
+リポジトリの設定で以下を確認してください:
+
+1. Settings > Pages
+2. Source: GitHub Actions
+3. デプロイ後のURL: `https://<username>.github.io/Codex_tictactoe/`

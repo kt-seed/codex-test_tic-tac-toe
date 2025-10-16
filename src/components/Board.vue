@@ -1,0 +1,43 @@
+<template>
+  <div class="inline-block bg-gray-200 p-2">
+    <div class="grid grid-cols-3 gap-2">
+      <Cell
+        v-for="(cell, index) in board"
+        :key="index"
+        :value="cell"
+        :disabled="gameOver"
+        :is-winning-cell="isWinningCell(index)"
+        @click="handleCellClick(index)"
+      />
+    </div>
+  </div>
+</template>
+
+<script setup>
+import Cell from './Cell.vue'
+
+const props = defineProps({
+  board: {
+    type: Array,
+    required: true
+  },
+  gameOver: {
+    type: Boolean,
+    default: false
+  },
+  winningLine: {
+    type: Array,
+    default: null
+  }
+})
+
+const emit = defineEmits(['move'])
+
+const handleCellClick = (index) => {
+  emit('move', index)
+}
+
+const isWinningCell = (index) => {
+  return props.winningLine?.includes(index) ?? false
+}
+</script>
