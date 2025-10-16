@@ -37,6 +37,8 @@ jobs:
 
       - name: Build
         run: pnpm run build
+        env:
+          VITE_BASE_URL: /codex-test_tic-tac-toe/pr-preview/pr-${{ github.event.pull_request.number }}/
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4

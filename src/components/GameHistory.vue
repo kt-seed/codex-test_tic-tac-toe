@@ -104,8 +104,7 @@ onMounted(() => {
 
 const formatDate = (timestamp) => {
   const date = new Date(timestamp)
-  const now = new Date()
-  const diff = now - date
+  const diff = Date.now() - date.getTime()
 
   // 1分未満
   if (diff < 60000) {

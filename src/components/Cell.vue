@@ -2,6 +2,7 @@
   <button
     @click="$emit('click')"
     :disabled="disabled"
+    :aria-label="`セル ${index + 1}${value ? `: ${value}` : ''}`"
     :class="[
       'w-24 h-24 text-4xl font-bold border-2 border-gray-700',
       'transition-all duration-200',
@@ -38,6 +39,10 @@ defineProps({
   isWinningCell: {
     type: Boolean,
     default: false
+  },
+  index: {
+    type: Number,
+    required: true
   }
 })
 

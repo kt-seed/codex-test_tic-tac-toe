@@ -7,6 +7,7 @@
         :value="cell"
         :disabled="gameOver"
         :is-winning-cell="isWinningCell(index)"
+        :index="index"
         @click="handleCellClick(index)"
       />
     </div>
@@ -27,7 +28,8 @@ const props = defineProps({
   },
   winningLine: {
     type: Array,
-    default: null
+    default: null,
+    validator: (value) => value === null || Array.isArray(value)
   }
 })
 

@@ -1,5 +1,17 @@
 import { ref, computed } from 'vue'
 
+// 勝利パターン（定数）
+const WIN_PATTERNS = [
+  [0, 1, 2], // 上段
+  [3, 4, 5], // 中段
+  [6, 7, 8], // 下段
+  [0, 3, 6], // 左列
+  [1, 4, 7], // 中列
+  [2, 5, 8], // 右列
+  [0, 4, 8], // 斜め（左上→右下）
+  [2, 4, 6], // 斜め（右上→左下）
+]
+
 /**
  * 三目並べのゲームロジック
  */
@@ -19,23 +31,11 @@ export function useGame() {
   // 勝利ラインのインデックス
   const winningLine = ref(null)
 
-  // 勝利パターン
-  const winPatterns = [
-    [0, 1, 2], // 上段
-    [3, 4, 5], // 中段
-    [6, 7, 8], // 下段
-    [0, 3, 6], // 左列
-    [1, 4, 7], // 中列
-    [2, 5, 8], // 右列
-    [0, 4, 8], // 斜め（左上→右下）
-    [2, 4, 6], // 斜め（右上→左下）
-  ]
-
   /**
    * 勝敗判定
    */
   const checkWinner = () => {
-    for (const pattern of winPatterns) {
+    for (const pattern of WIN_PATTERNS) {
       const [a, b, c] = pattern
       if (
         board.value[a] &&
@@ -64,8 +64,10 @@ export function useGame() {
       return false
     }
 
-    // マークを配置
-    board.value[index] = currentPlayer.value
+    // マークを配置（新しい配列を作成してリアクティビティを確保）
+    board.value = board.value.map((cell, i) =>
+      i === index ? currentPlayer.value : cell
+    )
 
     // 勝敗判定
     const result = checkWinner()

@@ -43,9 +43,9 @@ export const useGameHistoryStore = defineStore('gameHistory', () => {
   const addGame = (gameResult) => {
     history.value.unshift(gameResult)
 
-    // 最新20件のみ保持
+    // 最新20件のみ保持（より効率的な方法）
     if (history.value.length > 20) {
-      history.value = history.value.slice(0, 20)
+      history.value.length = 20
     }
 
     saveHistory()

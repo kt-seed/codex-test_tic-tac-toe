@@ -59,14 +59,6 @@ const handleMove = (index) => {
 }
 
 const handleReset = () => {
-  // ゲーム終了時は履歴に追加
-  if (gameOver.value) {
-    const result = getGameResult()
-    if (result) {
-      historyStore.addGame(result)
-    }
-  }
-
   resetGame()
 }
 
