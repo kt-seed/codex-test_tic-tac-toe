@@ -4,5 +4,6 @@ import vue from '@vitejs/plugin-vue'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [vue()],
-  base: '/Codex_tictactoe/', // GitHub Pagesのリポジトリ名に合わせて設定
+  // 環境変数でbaseパスを動的に設定（PRプレビュー対応）
+  base: process.env.VITE_BASE_PATH || '/Codex_tictactoe/',
 })
