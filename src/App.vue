@@ -1,11 +1,11 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8">
+  <div class="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-purple-950 py-12">
     <div class="container mx-auto px-4">
-      <h1 class="text-5xl font-bold text-center mb-8 text-gray-800 motion-preset-slide-down">
+      <h1 class="text-5xl font-bold text-center mb-8 text-white tracking-tight motion-preset-slide-down">
         三目並べ
       </h1>
 
-      <div class="flex flex-col items-center">
+      <div class="flex flex-col items-center gap-8">
         <GameStatus
           :current-player="currentPlayer"
           :game-over="gameOver"

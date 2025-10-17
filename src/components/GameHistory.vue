@@ -1,73 +1,73 @@
 <template>
-  <div class="mt-8 max-w-2xl mx-auto">
-    <h3 class="text-2xl font-bold mb-4">統計情報</h3>
+  <div class="mt-8 max-w-2xl mx-auto text-slate-100">
+    <h3 class="text-2xl font-semibold mb-6 tracking-wide">統計情報</h3>
 
     <div class="grid grid-cols-4 gap-4 mb-6">
-      <div class="bg-blue-100 p-4 rounded-lg text-center">
-        <div class="text-3xl font-bold text-blue-600">{{ stats.xWins }}</div>
-        <div class="text-sm text-gray-600">X の勝利</div>
-        <div class="text-xs text-gray-500">{{ stats.xWinRate }}%</div>
+      <div class="rounded-2xl border border-sky-400/30 bg-gradient-to-br from-sky-500/20 via-sky-500/10 to-transparent p-4 text-center shadow-lg shadow-sky-500/10">
+        <div class="text-3xl font-bold text-sky-200">{{ stats.xWins }}</div>
+        <div class="text-sm text-slate-200/80">X の勝利</div>
+        <div class="text-xs text-slate-300/70">{{ stats.xWinRate }}%</div>
       </div>
 
-      <div class="bg-red-100 p-4 rounded-lg text-center">
-        <div class="text-3xl font-bold text-red-600">{{ stats.oWins }}</div>
-        <div class="text-sm text-gray-600">O の勝利</div>
-        <div class="text-xs text-gray-500">{{ stats.oWinRate }}%</div>
+      <div class="rounded-2xl border border-rose-400/30 bg-gradient-to-br from-rose-500/25 via-rose-500/10 to-transparent p-4 text-center shadow-lg shadow-rose-500/10">
+        <div class="text-3xl font-bold text-rose-200">{{ stats.oWins }}</div>
+        <div class="text-sm text-slate-200/80">O の勝利</div>
+        <div class="text-xs text-slate-300/70">{{ stats.oWinRate }}%</div>
       </div>
 
-      <div class="bg-gray-100 p-4 rounded-lg text-center">
-        <div class="text-3xl font-bold text-gray-600">{{ stats.draws }}</div>
-        <div class="text-sm text-gray-600">引き分け</div>
-        <div class="text-xs text-gray-500">{{ stats.drawRate }}%</div>
+      <div class="rounded-2xl border border-violet-300/30 bg-gradient-to-br from-violet-500/20 via-violet-500/10 to-transparent p-4 text-center shadow-lg shadow-violet-500/10">
+        <div class="text-3xl font-bold text-violet-200">{{ stats.draws }}</div>
+        <div class="text-sm text-slate-200/80">引き分け</div>
+        <div class="text-xs text-slate-300/70">{{ stats.drawRate }}%</div>
       </div>
 
-      <div class="bg-green-100 p-4 rounded-lg text-center">
-        <div class="text-3xl font-bold text-green-600">{{ stats.total }}</div>
-        <div class="text-sm text-gray-600">総ゲーム数</div>
+      <div class="rounded-2xl border border-emerald-300/30 bg-gradient-to-br from-emerald-500/25 via-emerald-500/10 to-transparent p-4 text-center shadow-lg shadow-emerald-500/10">
+        <div class="text-3xl font-bold text-emerald-200">{{ stats.total }}</div>
+        <div class="text-sm text-slate-200/80">総ゲーム数</div>
       </div>
     </div>
 
     <div class="flex justify-between items-center mb-4">
-      <h3 class="text-xl font-bold">ゲーム履歴</h3>
+      <h3 class="text-xl font-semibold tracking-wide">ゲーム履歴</h3>
       <button
         v-if="history.length > 0"
         @click="$emit('clear-history')"
-        class="px-4 py-1 bg-red-500 text-white text-sm rounded
-               hover:bg-red-600 transition-colors duration-200"
+        class="px-4 py-1.5 rounded-lg bg-gradient-to-r from-rose-500 to-red-500 text-xs font-medium uppercase tracking-wider
+               text-white shadow-md shadow-rose-500/20 hover:from-rose-400 hover:to-red-400 transition-all duration-300"
       >
         履歴をクリア
       </button>
     </div>
 
-    <div v-if="history.length === 0" class="text-center text-gray-500 py-8">
+    <div v-if="history.length === 0" class="text-center text-slate-300/70 py-8">
       まだゲーム履歴がありません
     </div>
 
-    <div v-else ref="historyList" class="space-y-2 max-h-96 overflow-y-auto">
+    <div v-else ref="historyList" class="space-y-3 max-h-96 overflow-y-auto pr-1">
       <div
         v-for="(game, index) in history"
         :key="index"
-        class="bg-white p-3 rounded-lg border border-gray-200 flex justify-between items-center
+        class="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 p-4 shadow-lg shadow-black/20
                motion-preset-slide-left"
       >
         <div class="flex-1">
           <span class="font-semibold">
-            <span v-if="game.isDraw" class="text-gray-600">引き分け</span>
-            <span v-else :class="game.winner === 'X' ? 'text-blue-600' : 'text-red-600'">
+            <span v-if="game.isDraw" class="text-slate-300/80">引き分け</span>
+            <span v-else :class="game.winner === 'X' ? 'text-sky-300' : 'text-rose-300'">
               {{ game.winner }} の勝利
             </span>
           </span>
-          <span class="text-sm text-gray-500 ml-2">
+          <span class="text-sm text-slate-400 ml-2">
             {{ formatDate(game.timestamp) }}
           </span>
         </div>
 
-        <div class="grid grid-cols-3 gap-0.5 w-16 h-16 text-xs">
+        <div class="grid h-16 w-16 grid-cols-3 gap-0.5 text-xs">
           <div
             v-for="(cell, cellIndex) in game.board"
             :key="cellIndex"
-            class="border border-gray-300 flex items-center justify-center"
-            :class="cell === 'X' ? 'text-blue-600' : cell === 'O' ? 'text-red-600' : ''"
+            class="flex items-center justify-center rounded border border-white/10 bg-white/5"
+            :class="cell === 'X' ? 'text-sky-300' : cell === 'O' ? 'text-rose-300' : 'text-slate-400'"
           >
             {{ cell || '' }}
           </div>
