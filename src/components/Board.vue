@@ -1,6 +1,6 @@
 <template>
-  <div class="inline-block bg-gray-200 p-2">
-    <div class="grid grid-cols-3 gap-2">
+  <div class="inline-block rounded-3xl border border-white/10 bg-white/10 p-4 shadow-2xl backdrop-blur-xl">
+    <div class="grid grid-cols-3 gap-3">
       <Cell
         v-for="(cell, index) in board"
         :key="index"
